@@ -110,16 +110,16 @@ class StepperMotor(threading.Thread):
             #tempDelay =  self.calcDelay(self.currentDelay,self.wantedDelay)
             #self.currentDelay = tempDelay
             print("current",self.currentDelay,": wanted",self.wantedDelay)            
-            if (self.direction < 0) or (tempdelay == -1):
+            if (self.direction < 0) or (tempDelay == -1):
                 self.setStep(self.coilOrder[4])
                 time.sleep(40/1000)
             elif self.direction ==1:
-                for i in range(0,3,1):
+                for i in range(0,4,1):
                     print(i)
                     self.setStep(self.coilOrder[i])
                     time.sleep(tempDelay/1000)
             else:
-                for i in range(3,-1,-1):
+                for i in range(4,-1,-1):
                     print(i)
                     self.setStep(self.coilOrder[i])
                     time.sleep(tempDelay/1000)
