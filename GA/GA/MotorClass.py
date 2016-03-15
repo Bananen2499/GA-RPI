@@ -107,7 +107,7 @@ class StepperMotor(threading.Thread):
             
             #tempDelay =  self.wantedDelay
             #self.currentDelay = tempDelay
-            tempDelay =  self.calcDelay(2)
+            tempDelay =  self.calcDelay(1)
             self.currentDelay = tempDelay
             print("current",self.currentDelay,": wanted",self.wantedDelay)            
             if (self.direction < 0) or (tempDelay < 0):
@@ -135,7 +135,7 @@ class StepperMotor(threading.Thread):
         if wanted == -1:
             return -1
         diff = current - wanted
-        if maxStep < abs(diff):
+        if maxStep <= abs(diff):
             if diff < 0:
                 ret = current -maxStep
             else:
