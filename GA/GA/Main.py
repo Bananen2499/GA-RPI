@@ -47,7 +47,7 @@ class master(threading.Thread):
 
     def executeCommands(self):
         tdict = self.dict
-        self.motor.exe(tdict["steering_direction"],tdict["motor_speed"])
+        self.motor.exe(tdict["motor_direction"],tdict["motor_speed"])
         self.servo.exe(tdict["steering_direction"],tdict["steering_position"])
         self.oldDict=tdict
 

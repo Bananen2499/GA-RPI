@@ -34,6 +34,9 @@
     <Compile Include="Main.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="motortest.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="testing.py">
       <SubType>Code</SubType>
     </Compile>
