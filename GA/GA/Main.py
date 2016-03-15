@@ -11,8 +11,8 @@ class master(threading.Thread):
             self.socket = CarSocket.CarSocket(parent = self)
             #self.socket.connect("localhost",25566)
             self.socket.hostServerSocket(hostname="192.168.0.117", port=25565)
-            self.setDaemon(True)
-            self.socket.setDaemon(True)
+            self.setDaemon(False)
+            self.socket.setDaemon(False)
             
 
             io.setmode(io.BCM)
@@ -20,7 +20,7 @@ class master(threading.Thread):
             #self.motor = MotorClass.DCMotorClass(17,18,500,100,io) #for dc, not used on new car.
 
             self.motor = MotorClass.StepperMotor(17,18,15,14,1,io)
-            self.motor.setDaemon(True)
+            self.motor.setDaemon(False)
             self.motor.start()
             self.servo = ServoClasses.ServoClass(27,100,io)
         

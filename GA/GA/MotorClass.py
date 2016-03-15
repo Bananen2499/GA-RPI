@@ -115,12 +115,12 @@ class StepperMotor(threading.Thread):
                 time.sleep(40/1000)
             elif self.direction ==1:
                 for i in range(0,4,1):
-                    print(i)
+                    
                     self.setStep(self.coilOrder[i])
                     time.sleep(tempDelay/1000)
             else:
                 for i in range(4,-1,-1):
-                    print(i)
+                    
                     self.setStep(self.coilOrder[i])
                     time.sleep(tempDelay/1000)
 
