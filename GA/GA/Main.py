@@ -113,9 +113,10 @@ m.start()
 try:
 	while True:
 		pass
-except KeyboardInterrupt:
-	print("Shutting down")
-	
+except (KeyboardInterrupt,SystemExit):
+    print("Shutting down")
+    del m
+    io.cleanup()
 
 
 def inRange(a,b, x):
