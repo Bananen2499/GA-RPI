@@ -36,4 +36,14 @@ while c < 100:
     print(d,"  :  ",c)
     if d is want:
         break
+print("-------")
+d = 4
+want=40  
+c=0
+while c < 100:
+    d= calcDelay(d,want,1)
+    c += 1
+    print(d,"  :  ",c)
+    if d is want:
+        break
 print("done")

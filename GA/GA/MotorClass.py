@@ -136,7 +136,7 @@ class StepperMotor(threading.Thread):
             return -1
         diff = current - wanted
         if maxStep <= abs(diff):
-            if diff < 0:
+            if diff > 0:
                 ret = current -maxStep
             else:
                 ret = current + maxStep
