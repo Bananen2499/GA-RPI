@@ -21,6 +21,7 @@ class master(threading.Thread):
 
             self.motor = MotorClass.StepperMotor(17,18,15,14,1,io)
             self.motor.start()
+            self.motor.setDaemon(True)
             self.servo = ServoClasses.ServoClass(27,100,io)
         
     def start(self):

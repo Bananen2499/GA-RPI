@@ -87,8 +87,8 @@ class StepperMotor(threading.Thread):
         self.coilOrder = [[1,0,1,0],[0,1,1,0],[0,1,0,1],[1,0,0,1],[0,0,0,0]]
         #min delay betwen switching
         self.bound = bound
-        self.currentDelay = 1000 #delay in ms
-        self.wantedDelay = 1000
+        self.currentDelay = -1 #delay in ms
+        self.wantedDelay = -1
         self.direction = 1 #forward
         threading.Thread.__init__(self)
         print("done with init in stepper")
@@ -109,16 +109,18 @@ class StepperMotor(threading.Thread):
             self.currentDelay = tempDelay
             #tempDelay =  self.calcDelay(self.currentDelay,self.wantedDelay)
             #self.currentDelay = tempDelay
-            print("current",self.currentDelay,": wanted",self.wantedDelay)
-            if self.direction < 0:
+            print("current",self.currentDelay,": wanted",self.wantedDelay)            
+            if (self.direction < 0) or (tempdelay == -1):
                 self.setStep(self.coilOrder[4])
                 time.sleep(40/1000)
             elif self.direction ==1:
                 for i in range(0,3,1):
+                    print(i)
                     self.setStep(self.coilOrder[i])
                     time.sleep(tempDelay/1000)
             else:
                 for i in range(3,-1,-1):
+                    print(i)
                     self.setStep(self.coilOrder[i])
                     time.sleep(tempDelay/1000)
 
@@ -135,4 +137,7 @@ class StepperMotor(threading.Thread):
             self.direction=-1    
     def stop(self):
         self.running = False
+    def __del__(self):
+        self.running = False
+        
     
