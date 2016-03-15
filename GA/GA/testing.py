@@ -2,6 +2,8 @@ import math
 def calcDelay(current,wanted,maxStep):
     if wanted == -1:
         return -1
+    if current <0:
+        return wanted
     diff = current - wanted
     if maxStep < abs(diff):
         if diff < 0:
@@ -19,8 +21,8 @@ def calcDelay(current,wanted,maxStep):
 print(calcDelay(15,10,2))
 print(calcDelay(15,15,2))
 print(calcDelay(15,15,2))
-
-last = 50
+print(calcDelay(-1,50,2))
+last =-1
 for i in range(50,0,-5):
     last = 50
     for j in range(5):
