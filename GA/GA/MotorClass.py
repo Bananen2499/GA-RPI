@@ -105,10 +105,10 @@ class StepperMotor(threading.Thread):
         currentCoilConfig = 1 #betwen 0-3
         while self.running:
             
-            tempDelay =  self.wantedDelay
-            self.currentDelay = tempDelay
-            #tempDelay =  self.calcDelay(self.currentDelay,self.wantedDelay)
+            #tempDelay =  self.wantedDelay
             #self.currentDelay = tempDelay
+            tempDelay =  self.calcDelay()
+            self.currentDelay = tempDelay
             print("current",self.currentDelay,": wanted",self.wantedDelay)            
             if (self.direction < 0) or (tempDelay == -1):
                 self.setStep(self.coilOrder[4])
@@ -124,7 +124,9 @@ class StepperMotor(threading.Thread):
                     self.setStep(self.coilOrder[i])
                     time.sleep(tempDelay/1000)
 
-    def calcDelay(current,wanted):
+    def calcDelay(self):
+        wanted = self.wantedDelay
+        current = self.currentDelay
         return round(abs(wanted/current) *(wanted-current)+current,1)
 
     def exe(self,direc,speed):
@@ -139,5 +141,7 @@ class StepperMotor(threading.Thread):
         self.running = False
     def __del__(self):
         self.running = False
+        self.setStep([0,0,0,0])
+        io.cleanup()
         
     

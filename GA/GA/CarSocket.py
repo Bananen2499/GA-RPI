@@ -108,4 +108,5 @@ class CarSocket(threading.Thread):
         print("disconnected")
     def __del__(self):
         self.sock.send("d".encode())
+        self.parent.dict = CommandHandler.blankDict
         print("disconnected")

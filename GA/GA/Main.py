@@ -10,7 +10,7 @@ class master(threading.Thread):
             ##^ska bytas ut##
             self.socket = CarSocket.CarSocket(parent = self)
             #self.socket.connect("localhost",25566)
-            self.socket.hostServerSocket(hostname="148.136.200.95", port=25565)
+            self.socket.hostServerSocket(hostname="192.168.0.117", port=25565)
             self.setDaemon(True)
             self.socket.setDaemon(True)
             
@@ -20,8 +20,8 @@ class master(threading.Thread):
             #self.motor = MotorClass.DCMotorClass(17,18,500,100,io) #for dc, not used on new car.
 
             self.motor = MotorClass.StepperMotor(17,18,15,14,1,io)
-            self.motor.start()
             self.motor.setDaemon(True)
+            self.motor.start()
             self.servo = ServoClasses.ServoClass(27,100,io)
         
     def start(self):
