@@ -57,6 +57,12 @@ class CarSocket(threading.Thread):
         #print(pack)
         packedInts = [int(pack[0]),int(pack[1]),int(pack[2])]
         return packedInts
+#code to copy to the function to make it empty the socket buffer each time
+##inp = rsock.recv(1024).decode()
+#for i in inp.split("/b/n"):
+#    print(i)
+#rsock.close()
+#temp = inp.split("/b/n")[inp.split("/b/n").__len__()-2]
 
     def sendPack(self,pack):
         text = str(pack[0])
