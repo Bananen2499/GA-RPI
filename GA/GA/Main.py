@@ -4,13 +4,10 @@ import RPi.GPIO as io
 class master(threading.Thread):
     def __init__(self):
             threading.Thread.__init__(self)
-            ##"simulatorns grund"##
             ##first thing to run##
-            #self.socket = dummySocket("test.se",15,self)
-            ##^ska bytas ut##
             self.socket = CarSocket.CarSocket(parent = self)
-            #self.socket.connect("localhost",25566)
-            self.socket.hostServerSocket(hostname="192.168.0.117", port=25565)
+            self.socket.connect("localhost",25566) #host ip
+            #self.socket.hostServerSocket(hostname="192.168.0.117", port=25565) #change host ip
             self.setDaemon(False)
             self.socket.setDaemon(False)
             
@@ -31,7 +28,7 @@ class master(threading.Thread):
     def run(self):
         print("lol")
         try:
-            #monitor = Monitor(self)
+            
             while 1:
                 #print(self.dict)
                 self.executeCommands()
@@ -39,12 +36,13 @@ class master(threading.Thread):
                 if time.time() -5 > self.dict["time"]:
                     io.cleanup()
                     raise("stopping")
-                    #monitor.start()
+                    
                 time.sleep(0.08)
         except:
             print("all them exeptions")
+            print("last dict {}".format(self.dict))
             io.cleanup()
-            raise("error")
+            raise("error in Main Thread")
 
     def executeCommands(self):
         tdict = self.dict
@@ -69,23 +67,6 @@ class master(threading.Thread):
         io.cleanup()
         print("bort")
 
-class Monitor(threading.Thread):
-    def __init__(self,parent):
-        threading.Thread.__init__(self)
-        self.parent = parent
-        self.running=False
-    def runt(self):
-        self.running = True
-        d = self.parent.dict
-        for x in range(5):
-            if (d[time] is not parent.dict[time] and d[time] is  not CommandHandler.validDict(parent.dict)):
-                Monitor.shutdown()
-            time.sleep(1)
-        print("new dict detected")
-        print("exiting Monitor")
-        self.running = False
-    def shutdown(self):
-        print("shut down")
 
 class dummySocket(threading.Thread):
     def __init__(self,ip,port,parent):
@@ -118,12 +99,6 @@ except (KeyboardInterrupt,SystemExit):
     del m
     io.cleanup()
 
-
-def inRange(a,b, x):
-    if (x>a and x<b):
-        return True
-    else:
-        return False
 
 
 

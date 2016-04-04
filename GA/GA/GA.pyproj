@@ -25,19 +25,13 @@
     <Compile Include="CarSocket.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ClientSrv.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="CarSim.py">
+    <Compile Include="TestClientSrv.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Main.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="motortest.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="testing.py">
+    <Compile Include="TestMotor.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MotorClass.py">
@@ -49,8 +43,7 @@
     <Compile Include="CommandHandler.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GaServerPython.py" />
-    <Compile Include="yeeey.py">
+    <Compile Include="TestSocket.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

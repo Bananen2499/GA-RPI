@@ -2,13 +2,7 @@ import threading, socket, CommandHandler
 class CarSocket(threading.Thread):
     """description of class"""
     
-    #def __init__(self,  parent=None ,sock=socket.socket(socket.AF_INET, socket.SOCK_STREAM)):
-    #    threading.Thread.__init__(self)
-        
-    #    self.sock = sock
-    #    if parent is None:
-    #        raise SyntaxError("no Parent")
-    #    self.parent = parent
+    
     
     def __init__(self, parent=None):
         threading.Thread.__init__(self)
@@ -55,20 +49,13 @@ class CarSocket(threading.Thread):
         text.replace("\r\n","")
         pack = text.split(" ")
         #print(pack)
-        packedInts = [int(pack[0]),int(pack[1]),int(pack[2])]
+        packedInts = [int(w) for w in pack]
         return packedInts
-#code to copy to the function to make it empty the socket buffer each time
-##inp = rsock.recv(1024).decode()
-#for i in inp.split("/b/n"):
-#    print(i)
-#rsock.close()
-#temp = inp.split("/b/n")[inp.split("/b/n").__len__()-2]
+
 
     def sendPack(self,pack):
-        text = str(pack[0])
-        for i in range(1,3):
-            text = text + " " + str(pack[i])
-        text = text + "\r\n"
+        packe =[str(i) for i in pack]
+        text = " ".join(packe) + "\r\n"
         sentBytes = self.sock.send(text.encode())
         return sentBytes
 

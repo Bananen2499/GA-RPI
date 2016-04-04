@@ -1,6 +1,6 @@
 import threading,time,math
 class DCMotorClass(object):
-    """Motor controller class"""
+    """DC Motor controller class"""
     def __init__(self,pin1,pin2,frec,bound,io):
         print("motor setting up")
         self.bound = bound
@@ -72,6 +72,7 @@ class DCMotorClass(object):
         #add code.. nvm..
 
 class StepperMotor(threading.Thread):
+    """Steppermotor controller class"""
     def __init__(self,coil_A_pin,coil_B_pin,coil_C_pin,coil_D_pin,bound,io):
         self.coil_A_pin = coil_A_pin
         self.coil_B_pin = coil_B_pin

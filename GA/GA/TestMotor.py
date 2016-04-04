@@ -10,5 +10,5 @@ while inp.isalpha:
     print("set speed")
     inp = input()
     self.motor.exe(1,int(inp))
-print("exitiong")
+print("exiting")
 io.cleanup()

@@ -1,5 +1,5 @@
 class ServoClass(object):
-    """description of class"""
+    """Servoclass for analog servo"""
 
     def __init__(self,pin,bound,io):
         self.bound = bound

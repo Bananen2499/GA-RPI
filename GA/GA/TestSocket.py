@@ -6,13 +6,22 @@ class cli(threading.Thread):
         
     def run(self):
         self.csock.connect(("localhost",25566))
-        print("recived: ",self.recivePack())
+        p = self.recivePack()
+        print("recived: ",p, CommandHandler.validDict(CommandHandler.getAsDict(p)))
+        time.sleep(1)
+        while True:
+            p = self.recivePack()
+            if (p is b''):
+                break
+            print("recived: ",p, CommandHandler.validDict(CommandHandler.getAsDict(p)))
+        print("done")
 
-    def recivePack(self, MSGLEN = 11):
+    def recivePack(self, MSGLEN = 13):
         rec_bytes = self.csock.recv(MSGLEN)
         text = rec_bytes.decode()
         pack = text.split(" ")
-        packedInts = [int(pack[0]),int(pack[1]),int(pack[2])]
+        print(pack)
+        packedInts = [int(w) for w in pack]
         return packedInts
 
         
@@ -34,12 +43,18 @@ class host(threading.Thread):
         sentSize = self.sendPack(array)
         time.sleep(0.1)
         print("size:",sentSize)
+        for i in range(100,255):
+            array[2] = i
+            self.sendPack(array)
+        self.hsock.close()
         
 
     def sendPack(self,pack):
-        text = str(pack[0])
-        for i in range(1,3):
-            text = text + " " + str(pack[i])
+        packe =[str(i) for i in pack]
+        text = " ".join(packe) + "\r\n"
+        text = "{} {} {}\r\n".format(packe[0],packe[1],packe[2])
+        #for i in range(1,3):
+        #    text = text + " " + str(pack[i])
         sentBytes = self.sock.send(text.encode())
         return sentBytes
 
