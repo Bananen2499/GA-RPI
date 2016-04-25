@@ -16,7 +16,7 @@ class master(threading.Thread):
             self.dict = self.oldDict= CommandHandler.blankDict()
             #self.motor = MotorClass.DCMotorClass(17,18,500,100,io) #for dc, not used on new car.
 
-            self.motor = MotorClass.StepperMotor(17,18,15,14,1,io)
+            self.motor = MotorClass.StepperMotor(17,18,20,21,1,io)
             self.motor.setDaemon(False)
             self.motor.start()
             self.servo = ServoClasses.ServoClass(27,100,io)
